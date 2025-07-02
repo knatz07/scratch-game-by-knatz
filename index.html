@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>มารู้จักโปรแกรม Scratch กันเถอะ</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div class="screen" id="startScreen">
+        <div class="start-container">
+            <div class="start-header">
+                <h1 class="game-title">🐱 มารู้จักโปรแกรม Scratch กันเถอะ 🐱</h1>
+                <p class="game-subtitle">เกมบอร์ดเพื่อการเรียนรู้สำหรับเด็กประถม</p>
+            </div>
+            
+            <div class="start-cat-container">
+                <div class="scratch-cat-large">
+                    <div class="cat-face">🐱</div>
+                    <div class="cat-speech-bubble">
+                        <div class="bubble-text">สวัสดี! พร้อมเรียนรู้ Scratch กับฉันแล้วไหม?</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="start-buttons">
+                <button class="start-button" id="startGameBtn">
+                    <span class="button-icon">🚀</span>
+                    <span class="button-text">เริ่มลงทะเบียนผู้เล่น</span>
+                </button>
+            </div>
+            
+            <div class="start-decorations">
+                <div class="decoration block1">🧩</div>
+                <div class="decoration block2">🎮</div>
+                <div class="decoration block3">💡</div>
+                <div class="decoration block4">🎯</div>
+                <div class="decoration star1">⭐</div>
+                <div class="decoration star2">✨</div>
+                <div class="decoration star3">🌟</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Player Registration Screen -->
+    <div class="screen hidden" id="registrationScreen">
+        <div class="registration-container">
+            <div class="registration-header">
+                <h1>👦👧 ลงทะเบียนผู้เล่น</h1>
+                <p>กรอกชื่อผู้เล่นทั้ง 2 คน</p>
+            </div>
+            
+            <div class="registration-form">
+                <div class="player-input-group">
+                    <div class="player-input">
+                        <div class="input-icon">👦</div>
+                        <div class="input-content">
+                            <label for="player1Name">ผู้เล่นคนที่ 1</label>
+                            <input type="text" id="player1Name" placeholder="กรอกชื่อผู้เล่นคนที่ 1" maxlength="15">
+                        </div>
+                    </div>
+                    
+                    <div class="vs-divider">VS</div>
+                    
+                    <div class="player-input">
+                        <div class="input-icon">👧</div>
+                        <div class="input-content">
+                            <label for="player2Name">ผู้เล่นคนที่ 2</label>
+                            <input type="text" id="player2Name" placeholder="กรอกชื่อผู้เล่นคนที่ 2" maxlength="15">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="registration-buttons">
+                    <button class="back-button" id="backToStartBtn">
+                        <span class="button-icon">⬅️</span>
+                        <span class="button-text">กลับ</span>
+                    </button>
+                    <button class="play-button" id="startPlayBtn" disabled>
+                        <span class="button-icon">🎮</span>
+                        <span class="button-text">เริ่มเล่น</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="registration-preview">
+                <div class="preview-cat">🐱</div>
+                <div class="preview-text">พร้อมแล้วไหม? มาเริ่มเล่นกันเถอะ!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div class="screen hidden" id="gameScreen">
+        <div class="game-container">
+            <div class="header">
+                <h1>🐱 มารู้จักโปรแกรม Scratch กันเถอะ 🐱</h1>
+            </div>
+            
+            <div class="main-game">
+                <div class="left-panel">
+                    <div class="players-section">
+                        <div class="player player1">
+                            <div class="player-icon">👦</div>
+                            <div class="player-info">
+                                <h3 id="player1NameDisplay">ผู้เล่น 1</h3>
+                                <div class="score">คะแนน: <span id="score1">0</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="player player2">
+                            <div class="player-icon">👧</div>
+                            <div class="player-info">
+                                <h3 id="player2NameDisplay">ผู้เล่น 2</h3>
+                                <div class="score">คะแนน: <span id="score2">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="how-to-play">
+                        <h3>🎮 วิธีเล่น</h3>
+                        <ol>
+                            <li>ผู้เล่นผลัดกันทอยลูกเต๋า</li>
+                            <li>ขยับหมากตามจำนวนแต้ม</li>
+                            <li>ตอบคำถามจากช่องที่ตก</li>
+                            <li>ตอบถูกได้ 1 คะแนน | ตอบผิดไม่ได้คะแนน</li>
+                            <li>ใครได้ครบ 10 คะแนนก่อน ถือเป็นผู้ชนะ</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="board-container">
+                    <div class="game-board">
+                        <!-- Top row -->
+                        <div class="square corner start" data-position="0">
+                            <div class="square-content">
+                                <div class="icon">🚀</div>
+                                <div class="text">START</div>
+                            </div>
+                        </div>
+                        <div class="square top motion" data-position="1" data-category="motion">
+                            <div class="square-content">
+                                <div class="icon">🟦</div>
+                                <div class="text">การเคลื่อนไหว</div>
+                            </div>
+                        </div>
+                        <div class="square top looks" data-position="2" data-category="looks">
+                            <div class="square-content">
+                                <div class="icon">🟣</div>
+                                <div class="text">รูปลักษณ์</div>
+                            </div>
+                        </div>
+                        <div class="square top sound" data-position="3" data-category="sound">
+                            <div class="square-content">
+                                <div class="icon">🌸</div>
+                                <div class="text">เสียง</div>
+                            </div>
+                        </div>
+                        <div class="square top sensing" data-position="4" data-category="sensing">
+                            <div class="square-content">
+                                <div class="icon">🔷</div>
+                                <div class="text">การตรวจจับ</div>
+                            </div>
+                        </div>
+                        <div class="square top operators" data-position="5" data-category="operators">
+                            <div class="square-content">
+                                <div class="icon">🟢</div>
+                                <div class="text">ตัวดำเนินการ</div>
+                            </div>
+                        </div>
+                        <div class="square top variables" data-position="6" data-category="variables">
+                            <div class="square-content">
+                                <div class="icon">🟠</div>
+                                <div class="text">ตัวแปร</div>
+                            </div>
+                        </div>
+                        <div class="square corner" data-position="7">
+                            <div class="square-content">
+                                <div class="icon">💡</div>
+                                <div class="text">ไอเดีย</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right column -->
+                        <div class="square right events" data-position="8" data-category="events">
+                            <div class="square-content">
+                                <div class="icon">💛</div>
+                                <div class="text">เหตุการณ์</div>
+                            </div>
+                        </div>
+                        <div class="square right control" data-position="9" data-category="control">
+                            <div class="square-content">
+                                <div class="icon">🟡</div>
+                                <div class="text">ควบคุม</div>
+                            </div>
+                        </div>
+                        <div class="square right more-blocks" data-position="10" data-category="more-blocks">
+                            <div class="square-content">
+                                <div class="icon">🔴</div>
+                                <div class="text">บล็อกเพิ่มเติม</div>
+                            </div>
+                        </div>
+                        <div class="square right general" data-position="11" data-category="general">
+                            <div class="square-content">
+                                <div class="icon">⚫</div>
+                                <div class="text">ความรู้ทั่วไป</div>
+                            </div>
+                        </div>
+                        <div class="square right motion" data-position="12" data-category="motion">
+                            <div class="square-content">
+                                <div class="icon">🟦</div>
+                                <div class="text">การเคลื่อนไหว</div>
+                            </div>
+                        </div>
+                        <div class="square right looks" data-position="13" data-category="looks">
+                            <div class="square-content">
+                                <div class="icon">🟣</div>
+                                <div class="text">รูปลักษณ์</div>
+                            </div>
+                        </div>
+                        <div class="square corner" data-position="14">
+                            <div class="square-content">
+                                <div class="icon">🎯</div>
+                                <div class="text">เป้าหมาย</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bottom row -->
+                        <div class="square bottom sound" data-position="15" data-category="sound">
+                            <div class="square-content">
+                                <div class="icon">🌸</div>
+                                <div class="text">เสียง</div>
+                            </div>
+                        </div>
+                        <div class="square bottom sensing" data-position="16" data-category="sensing">
+                            <div class="square-content">
+                                <div class="icon">🔷</div>
+                                <div class="text">การตรวจจับ</div>
+                            </div>
+                        </div>
+                        <div class="square bottom operators" data-position="17" data-category="operators">
+                            <div class="square-content">
+                                <div class="icon">🟢</div>
+                                <div class="text">ตัวดำเนินการ</div>
+                            </div>
+                        </div>
+                        <div class="square bottom variables" data-position="18" data-category="variables">
+                            <div class="square-content">
+                                <div class="icon">🟠</div>
+                                <div class="text">ตัวแปร</div>
+                            </div>
+                        </div>
+                        <div class="square bottom events" data-position="19" data-category="events">
+                            <div class="square-content">
+                                <div class="icon">💛</div>
+                                <div class="text">เหตุการณ์</div>
+                            </div>
+                        </div>
+                        <div class="square bottom control" data-position="20" data-category="control">
+                            <div class="square-content">
+                                <div class="icon">🟡</div>
+                                <div class="text">ควบคุม</div>
+                            </div>
+                        </div>
+                        <div class="square corner" data-position="21">
+                            <div class="square-content">
+                                <div class="icon">🏆</div>
+                                <div class="text">รางวัล</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Left column -->
+                        <div class="square left more-blocks" data-position="22" data-category="more-blocks">
+                            <div class="square-content">
+                                <div class="icon">🔴</div>
+                                <div class="text">บล็อกเพิ่มเติม</div>
+                            </div>
+                        </div>
+                        <div class="square left general" data-position="23" data-category="general">
+                            <div class="square-content">
+                                <div class="icon">⚫</div>
+                                <div class="text">ความรู้ทั่วไป</div>
+                            </div>
+                        </div>
+                        <div class="square left motion" data-position="24" data-category="motion">
+                            <div class="square-content">
+                                <div class="icon">🟦</div>
+                                <div class="text">การเคลื่อนไหว</div>
+                            </div>
+                        </div>
+                        <div class="square left looks" data-position="25" data-category="looks">
+                            <div class="square-content">
+                                <div class="icon">🟣</div>
+                                <div class="text">รูปลักษณ์</div>
+                            </div>
+                        </div>
+                        <div class="square left sound" data-position="26" data-category="sound">
+                            <div class="square-content">
+                                <div class="icon">🌸</div>
+                                <div class="text">เสียง</div>
+                            </div>
+                        </div>
+                        <div class="square left sensing" data-position="27" data-category="sensing">
+                            <div class="square-content">
+                                <div class="icon">🔷</div>
+                                <div class="text">การตรวจจับ</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Center area -->
+                        <div class="center-area">
+                            <div class="scratch-cat">
+                                <div class="cat-image">🐱</div>
+                                <h2>Scratch Cat</h2>
+                                <p>พร้อมเรียนรู้แล้วหรือยัง?</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Player pieces -->
+                        <div class="player-piece player1-piece" id="player1-piece">👦</div>
+                        <div class="player-piece player2-piece" id="player2-piece">👧</div>
+                    </div>
+                </div>
+                
+                <div class="right-panel">
+                    <div class="dice-section">
+                        <h3>🎲 ทอยลูกเต๋า</h3>
+                        <div class="dice-container">
+                            <div class="dice" id="dice">
+                                <div class="dice-face">🎲</div>
+                            </div>
+                            <button class="roll-button" id="rollButton">ทอย!</button>
+                        </div>
+                        <div class="dice-result" id="diceResult">กดปุ่มเพื่อทอยลูกเต๋า</div>
+                    </div>
+                    
+                    <div class="current-player">
+                        <h3>ตาของผู้เล่น</h3>
+                        <div class="current-player-display" id="currentPlayer">ผู้เล่น 1</div>
+                    </div>
+                    
+                    <div class="game-status" id="gameStatus">
+                        เริ่มเกมใหม่!
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button class="control-btn restart-btn" id="restartGameBtn">
+                            <span>🔄</span>
+                            <span>เริ่มเกมใหม่</span>
+                        </button>
+                        <button class="control-btn home-btn" id="backToHomeBtn">
+                            <span>🏠</span>
+                            <span>กลับหน้าแรก</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Question Modal -->
+    <div class="modal" id="questionModal">
+        <div class="modal-content">
+            <h3 id="questionTitle">คำถาม</h3>
+            <p id="questionText">คำถามจะแสดงที่นี่</p>
+            <div class="question-options">
+                <button class="option-btn" id="option1">ตัวเลือก 1</button>
+                <button class="option-btn" id="option2">ตัวเลือก 2</button>
+                <button class="option-btn" id="option3">ตัวเลือก 3</button>
+                <button class="option-btn" id="option4">ตัวเลือก 4</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Winner Screen -->
+    <div class="screen hidden" id="winnerScreen">
+        <div class="winner-container">
+            <!-- Falling Effects -->
+            <div class="falling-effects">
+                <div class="star">⭐</div>
+                <div class="star">✨</div>
+                <div class="star">🌟</div>
+                <div class="star">💫</div>
+                <div class="star">⭐</div>
+                <div class="star">✨</div>
+                <div class="star">🌟</div>
+                <div class="star">💫</div>
+                <div class="confetti">🎊</div>
+                <div class="confetti">🎉</div>
+                <div class="confetti">🎊</div>
+                <div class="confetti">🎉</div>
+            </div>
+            
+            <!-- Main Winner Content -->
+            <div class="winner-content">
+                <div class="trophy-section">
+                    <div class="trophy">🏆</div>
+                    <div class="sparkles">
+                        <span>✨</span>
+                        <span>⭐</span>
+                        <span>✨</span>
+                    </div>
+                </div>
+                
+                <div class="winner-title">
+                    <h1>🎉 ยินดีด้วย! 🎉</h1>
+                    <h2 id="winnerName">คุณชนะแล้ว!</h2>
+                </div>
+                
+                <div class="winner-cat">
+                    <div class="cat-celebrate">🐱</div>
+                    <div class="cat-speech">
+                        <div class="speech-bubble">
+                            <p>เก่งมาก! คุณเป็นนักเขียนโปรแกรม Scratch ที่ยอดเยี่ยม!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="winner-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">🏅</div>
+                        <div class="stat-text">
+                            <span>คะแนนสูงสุด</span>
+                            <span id="finalScore">10</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-text">
+                            <span>ตอบถูก</span>
+                            <span id="correctAnswers">10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="winner-buttons">
+                    <button class="play-again-btn" id="playAgainBtn">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">เล่นใหม่อีกครั้ง</span>
+                    </button>
+                    <button class="home-btn-winner" id="homeFromWinnerBtn">
+                        <span class="btn-icon">🏠</span>
+                        <span class="btn-text">กลับหน้าแรก</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Popup -->
+    <div class="result-popup" id="resultPopup">
+        <div class="result-popup-content" id="resultPopupContent">
+            <div class="result-icon" id="resultIcon">🎉</div>
+            <div class="result-title" id="resultTitle">ยินดีด้วย!</div>
+            <div class="result-message" id="resultMessage">คุณตอบถูกต้อง!</div>
+            <button class="result-ok-btn" id="resultOkBtn">ตกลง</button>
+        </div>
+    </div>
+         
+    <!-- Footer -->
+    <footer class="game-footer">
+        <div class="footer-content">
+            <p>🎓 จัดทำโดย ครูศศิธร ปรีชากรณ์ 🎓</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
